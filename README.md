@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+For yarn users, this client uses the latest version of Yarn. The configuration has already been set in the project, but for your editor, you may need to launch `yarn sdks <option>` or `yarn sdks base`. See [Yarn's documentation for more info](https://yarnpkg.com/getting-started/editor-sdks).
+
 First, run the development server:
 
 ```bash

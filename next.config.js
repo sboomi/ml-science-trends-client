@@ -6,7 +6,7 @@ const nextConfig = {
   eslint: {
     dirs: ['src'],
   },
-  ignoreDuringBuilds: true, // Turn this off just in case
+  ignoreDuringBuilds: false, // Turn this off just in case
 };
 
 module.exports = nextConfig;

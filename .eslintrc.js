@@ -8,10 +8,12 @@ module.exports = {
   },
   'extends': [
     'next', // Can be set to "next/core-web-vitals" too
+    'next/core-web-vitals',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'airbnb',
-    'prettier',
     'plugin:@next/next/recommended',
+    'prettier',
   ],
   'parser': '@typescript-eslint/parser',
   'parserOptions': {

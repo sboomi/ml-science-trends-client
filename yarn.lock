@@ -2360,7 +2360,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.4, eslint-import-resolver-node@npm:^0.3.6":
+"eslint-import-resolver-node@npm:*, eslint-import-resolver-node@npm:^0.3.4, eslint-import-resolver-node@npm:^0.3.6":
   version: 0.3.6
   resolution: "eslint-import-resolver-node@npm:0.3.6"
   dependencies:
@@ -4334,6 +4334,7 @@ __metadata:
     eslint-config-airbnb: ^18.2.1
     eslint-config-next: 11.1.0
     eslint-config-prettier: ^8.3.0
+    eslint-import-resolver-node: ^0.3.6
     eslint-plugin-import: ^2.24.2
     eslint-plugin-jsx-a11y: ^6.4.1
     eslint-plugin-react: latest

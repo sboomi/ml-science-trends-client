@@ -1,61 +1,64 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true,
-    'es6': true,
-    'node': true,
-    'jest': true,
+  root: true,
+  env: {
+    node: true,
+    es6: true,
   },
-  'extends': [
-    'next', // Can be set to "next/core-web-vitals" too
-    'next/core-web-vitals',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'airbnb',
-    'plugin:@next/next/recommended',
-    'prettier',
-  ],
-  'parser': '@typescript-eslint/parser',
-  'parserOptions': {
-    'ecmaFeatures': {
-      'jsx': true
-    },
-    'ecmaVersion': 12,
-    'sourceType': 'module'
+  parserOptions: { ecmaVersion: 8 },
+  ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc'],
+  extends: ['eslint:recommended'],
+  rules: {
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
   },
-  'plugins': [
-    'react',
-    '@typescript-eslint'
-  ],
-  'rules': {
-    indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
-    'no-console': 'warn',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
-    ],
-    '@typescript-eslint/explicit-function-return-type': 'warn', // Consider using explicit annotations for object literals and function return types even when they can be inferred.
-    'no-empty': 'warn',
-  },
-  'settings': {
-    'import/resolver': {
-      'node': {
-        'extensions': ['.js', '.jsx', '.ts', '.tsx']
-      },
-      'typescript': {}
-    },
-
-  },
-  'overrides': [
+  overrides: [
     {
-      'files': ['**/*.ts', '**/*.tsx'],
-      'parser': 'typescript-eslint-parser',
-      'rules': {
-        'no-undef': 'off'
-      }
-    }
-  ]
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      settings: { react: { version: 'detect' } },
+      env: {
+        browser: true,
+        node: true,
+        es6: true,
+      },
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:jsx-a11y/recommended',
+        'prettier/@typescript-eslint',
+        'plugin:prettier/recommended',
+      ],
+      rules: {
+        'react/prop-types': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'jsx-a11y/anchor-is-valid': 'off',
+        '@typescript-eslint/no-unused-vars': ['error'],
+        '@typescript-eslint/explicit-function-return-type': [
+          'warn',
+          {
+            allowExpressions: true,
+            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+          },
+        ],
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+      },
+    },
+    {
+      files: 'cypress/**/*',
+      plugins: ['cypress'],
+      extends: [
+        'eslint:recommended',
+        'plugin:prettier/recommended',
+        'plugin:cypress/recommended',
+      ],
+      env: {
+        es6: true,
+        node: true,
+      },
+      rules: {
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+      },
+    },
+  ],
 };

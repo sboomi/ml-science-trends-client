@@ -13,12 +13,16 @@ import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import React from 'react';
 
-function Copyright() {
+type CopyrightProps = {
+  websiteName?: string;
+};
+
+function Copyright({ websiteName = 'MLScienceTrends' }: CopyrightProps) {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        {websiteName}
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -110,7 +114,7 @@ export default function SignUp() {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I want to receive news and updates via email."
               />
             </Grid>
           </Grid>

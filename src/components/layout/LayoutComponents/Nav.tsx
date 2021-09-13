@@ -1,9 +1,9 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
 const Nav = () => {
-  const [session, loading] = useSession();
+  const { data: session } = useSession();
 
   return (
     <nav>
@@ -19,7 +19,8 @@ const Nav = () => {
             Not signed in <br />
             <button onClick={() => signIn()}>Sign in</button>
             <br />
-            Don't have an account yet? <Link href="/signup">Sign up now!</Link>
+            Don&apos;t have an account yet?{' '}
+            <Link href="/signup">Sign up now!</Link>
           </li>
         )}
         {session && (

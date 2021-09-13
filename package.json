@@ -7,18 +7,24 @@
     "build": "next build && next export",
     "start": "next start",
     "check-ts": "tsc --noEmit",
-    "lint": "eslint 'src/**/*.ts'",
+    "lint": "next lint",
     "format": "prettier --write .",
     "set-husky": "husky install"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@next-auth/mongodb-adapter": "^0.0.2-pr.193-6071c497.276",
+    "@next-auth/typeorm-legacy-adapter": "^0.1.4",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.5",
     "next": "11.1.0",
-    "next-auth": "^3.29.0",
+    "next-auth": "beta",
+    "nodemailer": "^6.6.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "swr": "^0.5.6"
+    "swr": "^0.5.6",
+    "typeorm": "^0.2.37"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.1.0",

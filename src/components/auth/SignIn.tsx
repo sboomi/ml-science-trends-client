@@ -1,6 +1,7 @@
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,13 +13,18 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import React from 'react';
+import ProviderButtons from './ProviderButtons';
 
-function Copyright() {
+type CopyrightProps = {
+  websiteName?: string;
+};
+
+function Copyright({ websiteName = 'MLScienceTrends' }: CopyrightProps) {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        {websiteName}
       </Link>{' '}
       {new Date().getFullYear()}.
     </Typography>
@@ -45,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({ providers }) {
   const classes = useStyles();
 
   return (
@@ -102,11 +108,28 @@ export default function SignIn() {
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                Don't have an account? Sign Up
+                Don&apos;t have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
         </form>
+      </div>
+
+      <div className={classes.paper}>
+        <ButtonGroup
+          orientation="vertical"
+          color="default"
+          aria-label="vertical contained primary button group"
+          variant="contained"
+        >
+          {Object.values(providers).map((provider) => (
+            <ProviderButtons
+              id={(provider as any).id}
+              name={(provider as any).name}
+              key={(provider as any).name}
+            />
+          ))}
+        </ButtonGroup>
       </div>
       <Box mt={8}>
         <Copyright />

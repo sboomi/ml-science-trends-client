@@ -1,5 +1,4 @@
 import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -7,49 +6,14 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import MuiLink from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Link from 'next/link';
 import React from 'react';
+import { signInStyles as useStyles } from './../MuiComponents/classes';
 import ProviderButtons from './ProviderButtons';
-
-type CopyrightProps = {
-  websiteName?: string;
-};
-
-function Copyright({ websiteName = 'MLScienceTrends' }: CopyrightProps) {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        {websiteName}
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 export default function SignIn({ providers }) {
   const classes = useStyles();
@@ -102,13 +66,15 @@ export default function SignIn({ providers }) {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <MuiLink href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </MuiLink>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                Don&apos;t have an account? Sign Up
+              <Link href="/signup" passHref>
+                <MuiLink variant="body2">
+                  Don&apos;t have an account? Sign Up
+                </MuiLink>
               </Link>
             </Grid>
           </Grid>
@@ -131,9 +97,6 @@ export default function SignIn({ providers }) {
           ))}
         </ButtonGroup>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

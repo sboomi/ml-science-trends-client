@@ -1,5 +1,6 @@
 import Button from '@material-ui/core/Button';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import EmailIcon from '@material-ui/icons/Email';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import { signIn } from 'next-auth/react';
@@ -41,6 +42,8 @@ const ProviderButtons = ({ id, name }) => {
         break;
       case 'google':
         return <GoogleIcon />;
+      case 'email':
+        return <EmailIcon />;
       default:
         return null;
     }

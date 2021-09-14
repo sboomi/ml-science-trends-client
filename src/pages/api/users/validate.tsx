@@ -11,18 +11,14 @@ export default async function handler(
   await clientPromise();
 
   switch (method) {
-    case 'GET':
-      try {
-        const users = await User.find({});
-        res.status(200).json({ success: true, data: users });
-      } catch (error) {
-        res.status(400).json({ success: false });
-      }
-      break;
     case 'POST':
       try {
-        const user = await User.create(req.body);
-        res.status(201).json({ success: true, data: user });
+        const { email, password } = req.body;
+        // Search by username
+        const user = await User.find({ email: email });
+        if (password === user.password) {
+          res.status(201).json({ success: true, data: user });
+        }
       } catch (error) {
         res.status(400).json({ success: false });
       }

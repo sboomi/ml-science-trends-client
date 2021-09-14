@@ -2,8 +2,8 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import clientPromise from '../../lib/mongodbConnect';
-import User from '../../models/User';
+import clientPromise from '../../../lib/mongodbConnect';
+import User from '../../../models/User';
 
 /* Allows you to view user card info and delete user card*/
 const UserPage = ({ user }) => {

@@ -1,3 +1,9 @@
 export default function Home() {
-  return <div>There is nothing here !</div>;
+  return (
+    <div>
+      <h1>Check out our latest articles !</h1>
+
+      {/* Must add a protected part on it */}
+    </div>
+  );
 }

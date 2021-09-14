@@ -18,7 +18,11 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         // You can specify whatever fields you are expecting to be submitted.
         // e.g. domain, username, password, 2FA token, etc.
         credentials: {
-          username: { label: 'Username', type: 'text', placeholder: 'sboomi' },
+          email: {
+            label: 'Email',
+            type: 'email',
+            placeholder: 'shadi.boomi@gmail.com',
+          },
           password: { label: 'Password', type: 'password' },
         },
         async authorize(credentials, req) {
@@ -28,7 +32,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
           // You can also use the `req` object to obtain additional parameters
           // (i.e., the request IP address)
-          const res = await fetch('/your/endpoint', {
+          const res = await fetch('/api/users/validate', {
             method: 'POST',
             body: JSON.stringify(credentials),
             headers: { 'Content-Type': 'application/json' },
@@ -49,8 +53,8 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         maxAge: 24 * 60 * 60, //How long email links are valid for (default 24h)
       }),
       GithubProvider({
-        clientId: process.env.GITHUB_ID,
-        clientSecret: process.env.GITHUB_SECRET,
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
       }),
       TwitterProvider({
         clientId: process.env.TWITTER_CLIENT_ID,

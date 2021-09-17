@@ -1,4 +1,4 @@
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
 import Document, {
   DocumentContext,
   Head,
@@ -7,6 +7,7 @@ import Document, {
   NextScript,
 } from 'next/document';
 import React from 'react';
+import createEmotionCache from './../components/MuiComponents/createEmotionCache';
 import theme from './../components/MuiComponents/theme';
 
 class MyDocument extends Document {
@@ -31,20 +32,37 @@ class MyDocument extends Document {
   }
 
   static async getInitialProps(ctx: DocumentContext) {
-    const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
+
+    // Initiate emotion cache
+    const cache = createEmotionCache();
+    const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+        // eslint-disable-next-line react/display-name
+        enhanceApp: (App: any) => (props) =>
+          <App emotionCache={cache} {...props} />,
       });
     const initialProps = await Document.getInitialProps(ctx);
+
+    // This is important. It prevents emotion to render invalid HTML.
+    // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     return {
       ...initialProps,
       styles: [
         ...React.Children.toArray(initialProps.styles),
-        sheets.getStyleElement(),
+        emotionStyleTags,
       ],
     };
   }

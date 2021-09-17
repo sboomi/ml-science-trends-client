@@ -1,20 +1,20 @@
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Checkbox from '@material-ui/core/Checkbox';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Grid from '@material-ui/core/Grid';
-import MuiLink from '@material-ui/core/Link';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Checkbox from '@mui/material/Checkbox';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import MuiLink from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useReducer } from 'react';
 import DisplayAlert from '../MuiComponents/DisplayAlert';
-import { signInStyles as useStyles } from './../MuiComponents/classes';
 import ProviderButtons from './ProviderButtons';
 
 const initialState = {
@@ -51,7 +51,6 @@ function reducer(state, action) {
 }
 
 export default function SignIn({ providers }) {
-  const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSubmit = (e) => {
@@ -72,23 +71,31 @@ export default function SignIn({ providers }) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <DisplayAlert
           category={state.snackCategory}
           msg={state.snackMessage}
           open={state.snackOpen}
           closeMsg={() => dispatch({ type: 'closeAlert' })}
         />
-        <Avatar className={classes.avatar}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form
-          className={classes.form}
+        <Box
+          component="form"
           noValidate
           onSubmit={(e) => handleSubmit(e)}
+          sx={{ mt: 1 }}
         >
           <TextField
             variant="outlined"
@@ -134,8 +141,7 @@ export default function SignIn({ providers }) {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            sx={{ mt: 3, mb: 2 }}
           >
             Sign In
           </Button>
@@ -153,13 +159,19 @@ export default function SignIn({ providers }) {
               </Link>
             </Grid>
           </Grid>
-        </form>
-      </div>
+        </Box>
+      </Box>
 
-      <div className={classes.paper}>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <ButtonGroup
           orientation="vertical"
-          color="default"
           aria-label="vertical contained primary button group"
           variant="contained"
         >
@@ -173,7 +185,7 @@ export default function SignIn({ providers }) {
               />
             ))}
         </ButtonGroup>
-      </div>
+      </Box>
     </Container>
   );
 }

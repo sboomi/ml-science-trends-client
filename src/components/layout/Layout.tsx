@@ -1,6 +1,5 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-// Material-UI components
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import styles from '../../styles/Layout.module.css';
 import theme from './../MuiComponents/theme';
 import Footer from './LayoutComponents/Footer';

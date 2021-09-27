@@ -41,3 +41,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Prisma.io
+prisma/.env
+prisma/*.db
+prisma/*.db-journal
+prisma/migrations/*

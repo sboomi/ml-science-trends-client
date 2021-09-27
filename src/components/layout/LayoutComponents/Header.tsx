@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header>
       <h1>MLScienceTrends</h1>
-      <p>Keep up with the latest science trends</p>
+      <p>Request the latest technique according to your field!</p>
     </header>
   );
 };

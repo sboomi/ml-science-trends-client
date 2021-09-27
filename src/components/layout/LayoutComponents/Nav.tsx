@@ -1,36 +1,88 @@
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
 import React from 'react';
+import Link from './../../MuiComponents/Link';
 
 const Nav = () => {
   const { data: session } = useSession();
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
-        {!session && (
-          <li>
-            Not signed in <br />
-            <button onClick={() => signIn()}>Sign in</button>
-            <br />
-            Don&apos;t have an account yet?{' '}
-            <Link href="/signup">Sign up now!</Link>
-          </li>
-        )}
-        {session && (
-          <li>
-            Signed in as {session.user.email} <br />
-            <button onClick={() => signOut()}>Sign out</button>
-          </li>
-        )}
-      </ul>
-    </nav>
+    <>
+      <CssBaseline />
+      <AppBar
+        position="static"
+        color="default"
+        elevation={0}
+        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      >
+        <Toolbar sx={{ flexWrap: 'wrap' }}>
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+            MLTrends
+          </Typography>
+          <nav>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              Home
+            </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/about"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              About
+            </Link>
+          </nav>
+          {!session && (
+            <>
+              <Link href="/signup" passHref>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  Sign up
+                </Button>
+              </Link>
+              <Button
+                onClick={() => signIn()}
+                variant="outlined"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                Sign in
+              </Button>
+            </>
+          )}
+          {session && (
+            <>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                Signed in as {session.user.email}
+              </Typography>
+              <Button
+                onClick={() => signOut()}
+                variant="outlined"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                Sign out
+              </Button>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 

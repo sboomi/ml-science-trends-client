@@ -52,7 +52,7 @@ function reducer(state, action) {
 export default function SignUp() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     // console.log(state);
 

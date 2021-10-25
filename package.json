@@ -11,9 +11,9 @@
     "format": "prettier --write .",
     "test:e2e:open": "cypress open",
     "test:e2e:run": "cypress run",
-    "migrate": "pnpify prisma migrate dev",
-    "db:generate": "pnpify prisma generate",
-    "seed-db": "pnpify prisma db seed",
+    "migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "seed-db": "prisma db seed",
     "set-husky": "husky install"
   },
   "dependencies": {

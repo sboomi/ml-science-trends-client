@@ -97,7 +97,6 @@ export default function SignUp() {
         name: state.userName,
         email: state.email,
         password: state.password,
-        inscriptionDate: Date.now(),
       }),
       headers: {
         'Content-Type': 'application/json',

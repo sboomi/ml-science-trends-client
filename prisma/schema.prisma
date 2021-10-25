@@ -8,24 +8,34 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
+model TopPredictions {
+  id        Int @id @default(autoincrement())
+  topicList String?
+  request   PredictionHistory? @relation(fields: [requestId], references: [id])
+  requestId Int?
+}
+
+model PredictionHistory {
+  id             Int       @id @default(autoincrement())
+  request        String
+  createdAt      DateTime  @default(now()) @map(name: "created_at")
+  author         User?     @relation(fields: [authorId], references: [id])
+  authorId       Int?
+  topPredictions TopPredictions[]
+
+  @@map("prediction_history")
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map(name: "email_verified")
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
+  id                       Int       @id @default(autoincrement())
+  name                     String?
+  email                    String?   @unique
+  emailVerified            DateTime? @map(name: "email_verified")
+  password                 String?
+  image                    String?
+  createdAt                DateTime  @default(now()) @map(name: "created_at")
+  updatedAt                DateTime  @updatedAt @map(name: "updated_at")
+  predictionHistory        PredictionHistory[]
 
   @@map(name: "users")
 }

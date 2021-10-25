@@ -6,12 +6,17 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Alice',
     email: 'alice@prisma.io',
-    posts: {
+    password: 'YzhJmNtkPmJ5efA5',
+    predictionHistory: {
       create: [
         {
-          title: 'Join the Prisma Slack',
-          content: 'https://slack.prisma.io',
-          published: true,
+          request: 'Join the Prisma Slack',
+          topPredictions: {
+            create: [
+              { topicList: 'fezgre,tgrgtrdo,ergqgrg' },
+              { topicList: 'ioghro,rgmshuiruh,rtghiprhg,erfqehog' },
+            ],
+          },
         },
       ],
     },
@@ -19,12 +24,17 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Nilu',
     email: 'nilu@prisma.io',
-    posts: {
+    password: 'dCsefPyop9RAB7qo',
+    predictionHistory: {
       create: [
         {
-          title: 'Follow Prisma on Twitter',
-          content: 'https://www.twitter.com/prisma',
-          published: true,
+          request: 'Follow Prisma on Twitter',
+          topPredictions: {
+            create: [
+              { topicList: 'fezgre,tgrgtrdo,ergqgrg' },
+              { topicList: 'ioghro,rgmshuiruh,rtghiprhg,erfqehog' },
+            ],
+          },
         },
       ],
     },
@@ -32,16 +42,26 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Mahmoud',
     email: 'mahmoud@prisma.io',
-    posts: {
+    password: 'myshXmiEk7Lhg9Pa',
+    predictionHistory: {
       create: [
         {
-          title: 'Ask a question about Prisma on GitHub',
-          content: 'https://www.github.com/prisma/prisma/discussions',
-          published: true,
+          request: 'Ask a question about Prisma on GitHub',
+          topPredictions: {
+            create: [
+              { topicList: 'fezgre,tgrgtrdo,ergqgrg' },
+              { topicList: 'ioghro,rgmshuiruh,rtghiprhg,erfqehog' },
+            ],
+          },
         },
         {
-          title: 'Prisma on YouTube',
-          content: 'https://pris.ly/youtube',
+          request: 'Prisma on YouTube',
+          topPredictions: {
+            create: [
+              { topicList: 'fezgre,tgrgtrdo,ergqgrg' },
+              { topicList: 'ioghro,rgmshuiruh,rtghiprhg,erfqehog' },
+            ],
+          },
         },
       ],
     },

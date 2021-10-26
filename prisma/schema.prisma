@@ -36,8 +36,16 @@ model User {
   createdAt                DateTime  @default(now()) @map(name: "created_at")
   updatedAt                DateTime  @updatedAt @map(name: "updated_at")
   predictionHistory        PredictionHistory[]
+  profile                  Profile?
 
   @@map(name: "users")
+}
+
+model Profile {
+  id     Int     @default(autoincrement()) @id
+  bio    String?
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id])
 }
 
 model Account {
@@ -48,6 +56,7 @@ model Account {
   providerId         String    @map(name: "provider_id")
   providerAccountId  String    @map(name: "provider_account_id")
   refreshToken       String?   @map(name: "refresh_token")
+  refreshTokenExpires String?  @map(name: "refresh_token_expires_in")
   accessToken        String?   @map(name: "access_token")
   accessTokenExpires DateTime? @map(name: "access_token_expires")
   createdAt          DateTime  @default(now()) @map(name: "created_at")

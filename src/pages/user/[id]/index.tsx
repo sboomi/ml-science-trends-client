@@ -19,7 +19,8 @@ async function deletePost(id: number): Promise<void> {
 
 /* Allows you to view user card info and delete user card*/
 const UserPage = (props) => {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   if (loading) {
     return <div>Authenticating</div>;
